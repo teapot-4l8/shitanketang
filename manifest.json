@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "JCE 实验室安全学习助手",
+  "version": "1.1.0",
+  "description": "实验室安全学习系统挂机助手：自动播放未学视频、自动切换、自动处理弹题",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "http://ncepu.jcedutec.cn:8802/*",
+    "http://ncepu.jcedutec.cn:8800/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "JCE 学习助手"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://ncepu.jcedutec.cn:8802/*"
+      ],
+      "js": [
+        "answers.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "inject.js"
+      ],
+      "matches": [
+        "http://ncepu.jcedutec.cn:8802/*"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
